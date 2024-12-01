@@ -7,8 +7,9 @@ class AuthWindow(customtkinter.CTk):
         self.on_login_success = on_login_success
 
         self.title("Auth")
-        self.geometry("400x300")
-        self.grid_columnconfigure(0, weight=1)
+
+        # set the position 
+        self.geometry(f'600x300')
 
         # header
         self.title_label = customtkinter.CTkLabel(self, text="OpenBox", font=("Segoe UI", 16))

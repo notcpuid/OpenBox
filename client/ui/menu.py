@@ -1,5 +1,4 @@
 import customtkinter
-import tkinter.filedialog
 from handler.upload_file import choose_file, upload_file
 
 class App(customtkinter.CTk):
@@ -7,8 +6,9 @@ class App(customtkinter.CTk):
         super().__init__()
 
         self.title("OpenBox")
-        self.geometry("500x200")
-        self.grid_columnconfigure((0, 1), weight=1)
+
+        # set the position
+        self.geometry(f'400x200')
 
         # file path variable
         self.file_path = None

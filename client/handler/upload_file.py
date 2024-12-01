@@ -1,12 +1,11 @@
 import customtkinter
-import tkinter.filedialog
 import requests
 import hashlib
 import os
 
 def choose_file(self):
     # open file dialog
-    file_path = tkinter.filedialog.askopenfilename()
+    file_path = customtkinter.filedialog.askopenfilename()
     if file_path:
         self.file_path = file_path
         self.file_label.configure(text="Selected file: " + os.path.basename(file_path), font=("Segoe UI", 12))
@@ -24,11 +23,11 @@ def upload_file(self):
                 file_content = file.read()
                 
                 # generate md5 hash
-                md5_hash = hashlib.md5(file_content).hexdigest()
-                print(f"[ openbox ] MD5 Hash: {md5_hash}") 
+                sha256_hash = hashlib.sha256(file_content).hexdigest()
+                print(f"[ openbox ] sha256 hash: {sha256_hash}") 
                 
                 # send file
-                response = requests.post(url, files={"file": (md5_hash, file_content)})
+                response = requests.post(url, files={"file": (sha256_hash, file_content)})
             
             if response.status_code == 200:
                 print("[ openbox ] file uploaded successfully")
